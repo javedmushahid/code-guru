@@ -149,7 +149,7 @@ const Home = ({ handleLogout }) => {
     const token = localStorage.getItem("access_token");
     try {
       const response = await axios.post(
-        `http://localhost:8002/api/v1/add-expenses/${userId}`,
+        `https://updated-api-production.up.railway.app/api/v1/add-expenses/${userId}`,
         newExpense,
         {
           headers: {
@@ -182,7 +182,7 @@ const Home = ({ handleLogout }) => {
     const expenseId = selectedExpense._id;
     try {
       await axios.put(
-        `http://localhost:8002/api/v1/expenses/${expenseId}/${userId}`,
+        `https://updated-api-production.up.railway.app/api/v1/expenses/${expenseId}/${userId}`,
         updatedExpense,
         {
           headers: {
@@ -210,7 +210,7 @@ const Home = ({ handleLogout }) => {
 
     try {
       const res = await axios.delete(
-        `http://localhost:8002/api/v1/expenses/${expenseId}/${userId}`,
+        `https://updated-api-production.up.railway.app/api/v1/expenses/${expenseId}/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -238,7 +238,12 @@ const Home = ({ handleLogout }) => {
 
   const handleAmount = (event) => {
     const inputPrice = event.target.value;
-    setExpenseAmount(inputPrice);
+
+    const regex = /^\d*\.?\d*$/;
+
+    if (regex.test(inputPrice)) {
+      setExpenseAmount(inputPrice);
+    }
   };
 
   const handleCategoryChange = (event) => {
@@ -256,7 +261,7 @@ const Home = ({ handleLogout }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8002/api/v1/expenses/${userId}`,
+        `https://updated-api-production.up.railway.app/api/v1/expenses/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -355,7 +360,7 @@ const Home = ({ handleLogout }) => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: isSmallScreen ? "column" : "row",
               alignItems: "center",
               justifyContent: "space-between",
             }}
@@ -365,7 +370,7 @@ const Home = ({ handleLogout }) => {
               color="primary"
               startIcon={<AddIcon />}
               onClick={handleOpenAddDialog}
-              sx={{ marginTop: "30px", marginBottom: "20px" }}
+              sx={{ marginTop: "30px" }}
             >
               Add Expense
             </Button>
@@ -391,6 +396,7 @@ const Home = ({ handleLogout }) => {
             style={{
               display: "flex",
               justifyContent: "space-between",
+              flexDirection: isSmallScreen ? "column" : "row",
               marginBottom: "20px",
               gap: 10,
             }}
@@ -522,7 +528,6 @@ const Home = ({ handleLogout }) => {
               textAlign: "center",
               fontSize: "28px",
               background: "linear-gradient(to right, #ff9a9e, #fad0c4)",
-              
             }}
           >
             List Of Expenses

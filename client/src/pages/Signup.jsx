@@ -3,8 +3,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-function Signup({setIsLoggedIn}) {
-  const navigate=useNavigate();
+function Signup({ setIsLoggedIn }) {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +12,7 @@ function Signup({setIsLoggedIn}) {
     name: "",
     email: "",
     password: "",
+    error: "",
   });
 
   const handleNameChange = (event) => {
@@ -28,7 +29,7 @@ function Signup({setIsLoggedIn}) {
     setPassword(event.target.value);
     setErrors({ ...errors, password: "" });
   };
- 
+
   const handleSignup = async (event) => {
     event.preventDefault();
 
@@ -37,6 +38,7 @@ function Signup({setIsLoggedIn}) {
       name: "",
       email: "",
       password: "",
+      error: "",
     };
 
     if (name.trim() === "") {
@@ -66,6 +68,7 @@ function Signup({setIsLoggedIn}) {
             password,
           }
         );
+        console.log("signup response", response.error);
 
         if (response.status === 200) {
           localStorage.setItem("access_token", response.data.token);
@@ -77,7 +80,12 @@ function Signup({setIsLoggedIn}) {
           console.log("Error:", response.data.error);
         }
       } catch (error) {
-        console.error("An error occurred:", error);
+        if (error) {
+          console.log(error);
+        }
+        setErrors({
+          email: "Email already exist.",
+        });
       }
     }
   };
@@ -97,6 +105,7 @@ function Signup({setIsLoggedIn}) {
       >
         Signup
       </h1>
+
       <form
         style={{
           width: "300px",
@@ -127,6 +136,7 @@ function Signup({setIsLoggedIn}) {
           error={Boolean(errors.email)}
           helperText={errors.email}
         />
+
         <TextField
           label="Password"
           variant="outlined"

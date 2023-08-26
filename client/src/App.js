@@ -14,7 +14,6 @@ import {
 import axios from "axios";
 import { Box, Typography } from "@mui/material";
 import ForgotPassword from "./pages/ForgotPassword";
-import ExpenseManager from "./pages/ExpenseManager";
 
 function App() {
   const navigate = useNavigate();

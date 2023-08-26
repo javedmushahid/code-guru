@@ -17,12 +17,12 @@ const { hashPassword, authenticate } = require("../helper/auth");
 const dotenv = require("dotenv");
 
 const signUpp = async (req, res) => {
-  const errors = validationResult(req) || [];
-  if (!errors.isEmpty()) {
-    return res.status(WRONG_ENTITY).json({
-      errors: errors.array(),
-    });
-  }
+  // const errors = validationResult(req) || [];
+  // if (!errors.isEmpty()) {
+  //   return res.status(WRONG_ENTITY).json({
+  //     errors: errors.array(),
+  //   });
+  // }
   const { name, email, password } = req.body;
   try {
     const lastUser = await User.findOne().sort({ userId: -1 });
