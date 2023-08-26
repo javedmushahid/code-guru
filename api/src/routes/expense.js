@@ -10,11 +10,13 @@ const {
   getSingleExpense,
   updateExpense,
   deleteExpense,
-} = require("../controllers/expense");
+} = require("../controllers/expense"); 
 const expenseRoute = express.Router();
 
 expenseRoute.post("/add-expenses/:userId", isSameUserOrAdmin, addExpense);
+
 expenseRoute.get("/expenses/:userId", isSameUserOrAdmin, getAllExpense);
+
 expenseRoute.get(
   "/expenses/:expenseId/:userId",
   isSameUserOrAdmin,
@@ -26,6 +28,7 @@ expenseRoute.put(
   isSameUserOrAdmin,
   updateExpense
 );
+
 expenseRoute.delete(
   "/expenses/:expenseId/:userId",
   isSameUserOrAdmin,
