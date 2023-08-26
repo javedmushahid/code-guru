@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `npm start`
-
+open this link to check https://code-guru-netlify.netlify.app/
 Runs the app in the development mode.\
 Open [https://code-guru-netlify.netlify.app/](https://code-guru-netlify.netlify.app/) to view it in your browser.
 
