@@ -33,12 +33,12 @@ const ForgotPassword = () => {
     try {
       setIsSendingEmail(true);
       const res = await axios.post(
-        "https://itcom.up.railway.app/api/v1/forgot-password",
+        "https://updated-api-production.up.railway.app/api/v1/forgot-password",
         {
           email,
         }
       );
-      console.log(res)
+      console.log(res);
       // console.log("FORGOT password", res.data);
       setShowOtpField(true);
       setIsSendingEmail(false);
@@ -53,7 +53,7 @@ const ForgotPassword = () => {
     try {
       setIsVerifyingOtp(true);
       const response = await axios.post(
-        "https://itcom.up.railway.app/v1/verify-otp",
+        "https://updated-api-production.up.railway.app/api/v1/verify-otp",
         {
           email,
           otp,
@@ -61,7 +61,7 @@ const ForgotPassword = () => {
       );
 
       if (response.status === 200) {
-        // console.log(response);
+        console.log(response);
         setResetSuccess(true);
         setUserId(response.data.data.userId);
       }
@@ -76,7 +76,7 @@ const ForgotPassword = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `https://itcom.up.railway.app/api/v1/reset-password/${userId}`, // Use the userId to reset the password
+        `https://updated-api-production.up.railway.app/api/v1/reset-password/${userId}`, // Use the userId to reset the password
         {
           newPassword,
           confirmPassword,
