@@ -12,7 +12,6 @@ function Signup({ setIsLoggedIn }) {
     name: "",
     email: "",
     password: "",
-    error: "",
   });
 
   const handleNameChange = (event) => {
@@ -38,7 +37,6 @@ function Signup({ setIsLoggedIn }) {
       name: "",
       email: "",
       password: "",
-      error: "",
     };
 
     if (name.trim() === "") {
@@ -61,14 +59,13 @@ function Signup({ setIsLoggedIn }) {
     if (isValid) {
       try {
         const response = await axios.post(
-          "http://localhost:8002/api/v1/signupp",
+          "https://updated-api-production.up.railway.app/api/v1/signupp",
           {
             name,
             email,
             password,
           }
         );
-        console.log("signup response", response.error);
 
         if (response.status === 200) {
           localStorage.setItem("access_token", response.data.token);
@@ -80,12 +77,17 @@ function Signup({ setIsLoggedIn }) {
           console.log("Error:", response.data.error);
         }
       } catch (error) {
-        if (error) {
-          console.log(error);
+        if (
+          (error.response && error.response.status === 400) ||
+          (error.response && error.response.status === 422)
+        ) {
+          setErrors({
+            ...newErrors,
+            email: "Email address already registered.",
+          });
+        } else {
+          console.error("An error occurred:", error);
         }
-        setErrors({
-          email: "Email already exist.",
-        });
       }
     }
   };
@@ -105,7 +107,6 @@ function Signup({ setIsLoggedIn }) {
       >
         Signup
       </h1>
-
       <form
         style={{
           width: "300px",
@@ -136,7 +137,6 @@ function Signup({ setIsLoggedIn }) {
           error={Boolean(errors.email)}
           helperText={errors.email}
         />
-
         <TextField
           label="Password"
           variant="outlined"

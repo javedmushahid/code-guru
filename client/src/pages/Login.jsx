@@ -45,7 +45,7 @@ const Login = ({ setIsLoggedIn }) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8002/api/v1/login", {
+      const response = await axios.post("https://updated-api-production.up.railway.app/api/v1/login", {
         email,
         password,
       });
