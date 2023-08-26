@@ -28,11 +28,7 @@ function Signup({setIsLoggedIn}) {
     setPassword(event.target.value);
     setErrors({ ...errors, password: "" });
   };
-  // useEffect(() => {
-  //   const accessToken =
-  //     typeof window !== "undefined" && localStorage.getItem("access_token");
-  //   !accessToken && navigate("/login");
-  // }, []);
+ 
   const handleSignup = async (event) => {
     event.preventDefault();
 

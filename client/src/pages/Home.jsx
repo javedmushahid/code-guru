@@ -279,11 +279,9 @@ const Home = ({ handleLogout }) => {
   }, []);
 
   useEffect(() => {
-    // Retrieve user data from localStorage
     const userData = localStorage.getItem("user_data");
 
     if (userData) {
-      // Parse user data and extract the name
       const { name } = JSON.parse(userData);
       setUserName(name);
     }
@@ -321,7 +319,6 @@ const Home = ({ handleLogout }) => {
     });
 
     doc.setFontSize(20);
-    // doc.setFontStyle("bold");
     doc.text(
       `Monthly Expense Report - ${months[selectedReportMonth]} ${selectedReportYear}`,
       15,
@@ -385,7 +382,7 @@ const Home = ({ handleLogout }) => {
               variant="contained"
               color="primary"
               onClick={generatePDFReport}
-              sx={{ marginTop: "20px", marginLeft: "20px" }} // Add margin for spacing
+              sx={{ marginTop: "20px", marginLeft: "20px" }}
             >
               Generate PDF Report
             </Button>
@@ -436,7 +433,6 @@ const Home = ({ handleLogout }) => {
                 <MenuItem value="Transport">Transport</MenuItem>
                 <MenuItem value="Groceries">Groceries</MenuItem>
                 <MenuItem value="Others">Others</MenuItem>
-                {/* Add more categories here */}
               </Select>
             </FormControl>
 
@@ -468,7 +464,6 @@ const Home = ({ handleLogout }) => {
                 <MenuItem value={9}>October</MenuItem>
                 <MenuItem value={10}>November</MenuItem>
                 <MenuItem value={11}>December</MenuItem>
-                {/* ... Add more months */}
               </Select>
             </FormControl>
             <FormControl fullWidth variant="outlined" margin="normal">
@@ -485,7 +480,6 @@ const Home = ({ handleLogout }) => {
                 <MenuItem value={2019}>2019</MenuItem>
                 <MenuItem value={2018}>2018</MenuItem>
                 <MenuItem value={2017}>2017</MenuItem>
-                {/* ... Add more years */}
               </Select>
             </FormControl>
 
@@ -494,7 +488,6 @@ const Home = ({ handleLogout }) => {
                 {`Monthly Report - ${months[selectedReportMonth]} ${selectedReportYear}`}
               </DialogTitle>
               <DialogContent>
-                {/* Display the detailed expenses */}
                 {reportExpenses.map((expense, index) => (
                   <div key={index}>
                     <Typography
@@ -508,7 +501,6 @@ const Home = ({ handleLogout }) => {
                       variant="body2"
                       sx={{ fontSize: "19px", fontWeight: 400 }}
                     >{`Amount: ${expense.amount} ${userLocale}`}</Typography>
-                    {/* ... Other expense details */}
                   </div>
                 ))}
                 <Typography
@@ -530,8 +522,7 @@ const Home = ({ handleLogout }) => {
               textAlign: "center",
               fontSize: "28px",
               background: "linear-gradient(to right, #ff9a9e, #fad0c4)",
-              //   WebkitBackgroundClip: "text",
-              //   WebkitTextFillColor: "transparent",
+              
             }}
           >
             List Of Expenses
@@ -646,7 +637,6 @@ const Home = ({ handleLogout }) => {
                   <MenuItem value="Transport">Transport</MenuItem>
                   <MenuItem value="Groceries">Groceries</MenuItem>
                   <MenuItem value="Others">Others</MenuItem>
-                  {/* Add more categories here */}
                 </Select>
               </FormControl>
               <TextField
@@ -731,7 +721,6 @@ const Home = ({ handleLogout }) => {
                   <MenuItem value="Transport">Transport</MenuItem>
                   <MenuItem value="Groceries">Groceries</MenuItem>
                   <MenuItem value="Others">Others</MenuItem>
-                  {/* Add more categories here */}
                 </Select>
               </FormControl>
               <TextField
